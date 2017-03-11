@@ -13,21 +13,21 @@ ext {
     bintrayName = 'time-duration-picker'
     libraryName = 'time-duration-picker'
 
-    publishedGroupId = 'mobi.upod'
+    publishedGroupId = 'kap.alex'
     artifact = 'time-duration-picker'
     libraryVersion = '1.1.1-support'
 
     libraryDescription = 'An Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop\'s stock timer app.'
 
-    siteUrl = 'https://github.com/svenwiegand/time-duration-picker'
-    gitUrl = 'https://github.com/svenwiegand/time-duration-picker.git'
+    siteUrl = 'https://github.com/kaplanalexander/time-duration-picker'
+    gitUrl = 'https://github.com/kaplanalexander/time-duration-picker.git'
 
     developerId = 'svenwiegand'
     developerName = 'Sven Wiegand'
     developerEmail = 'source@sven-wiegand.de'
 
     licenseName = 'MIT'
-    licenseUrl = 'https://github.com/svenwiegand/time-duration-picker/blob/master/LICENSE.md'
+    licenseUrl = 'https://github.com/kaplanalexander/time-duration-picker/blob/master/LICENSE.md'
     allLicenses = ['MIT']
 }
 
