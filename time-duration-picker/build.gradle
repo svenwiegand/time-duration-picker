@@ -15,7 +15,7 @@ ext {
 
     publishedGroupId = 'kap.alex'
     artifact = 'time-duration-picker'
-    libraryVersion = '1.1.1-support'
+    libraryVersion = '1.1.2-support'
 
     libraryDescription = 'An Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop\'s stock timer app.'
 
