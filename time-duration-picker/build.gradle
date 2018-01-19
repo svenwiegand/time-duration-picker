@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
 apply plugin: 'com.android.library'
@@ -13,21 +13,21 @@ ext {
     bintrayName = 'time-duration-picker'
     libraryName = 'time-duration-picker'
 
-    publishedGroupId = 'kap.alex'
+    publishedGroupId = 'mobi.upod'
     artifact = 'time-duration-picker'
-    libraryVersion = '1.1.2-support'
+    libraryVersion = '1.1.3'
 
     libraryDescription = 'An Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop\'s stock timer app.'
 
-    siteUrl = 'https://github.com/kaplanalexander/time-duration-picker'
-    gitUrl = 'https://github.com/kaplanalexander/time-duration-picker.git'
+    siteUrl = 'https://github.com/svenwiegand/time-duration-picker'
+    gitUrl = 'https://github.com/svenwiegand/time-duration-picker.git'
 
     developerId = 'svenwiegand'
     developerName = 'Sven Wiegand'
     developerEmail = 'source@sven-wiegand.de'
 
     licenseName = 'MIT'
-    licenseUrl = 'https://github.com/kaplanalexander/time-duration-picker/blob/master/LICENSE.md'
+    licenseUrl = 'https://github.com/svenwiegand/time-duration-picker/blob/master/LICENSE.md'
     allLicenses = ['MIT']
 }
 
@@ -37,7 +37,7 @@ repositories {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         minSdkVersion 14

@@ -1,5 +1,3 @@
-This is a modified version of the original time-duration-picker to work with support v4 library fragment manager
-
 # TimeDurationPicker
 TimeDurationPicker is an Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop's stock timer app. The component is available in three flavors:
 
@@ -29,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compile 'kap.alex:time-duration-picker:1.1.1-support'
+    compile 'mobi.upod:time-duration-picker:1.1.3'
 }
 ```
 
