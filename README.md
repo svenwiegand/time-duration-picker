@@ -27,7 +27,9 @@ repositories {
 }
 
 dependencies {
-    compile 'mobi.upod:time-duration-picker:1.1.3'
+    compile 'mobi.upod:time-duration-picker:1.1.4'
+    // For Android Support Library
+    compile 'mobi.upod:time-duration-picker-support:1.1.4'
 }
 ```
 
@@ -101,6 +103,11 @@ And then from within an `Activity`:
 new PickerDialogFragment().show(getFragmentManager(), "dialog");
 ```
 
+For Android Support Library, use:
+```java
+import mobi.upod.timedurationpicker.support.TimeDurationPickerDialogFragment;
+```
+
 ## Preference
 Want a duration preference that holds a user selected value in milliseconds? Simply reference `TimeDurationPickerPreference` in your Preference-XML file like this:
 ```xml
@@ -113,6 +120,19 @@ Want a duration preference that holds a user selected value in milliseconds? Sim
         android:defaultValue="900000"/>
 </PreferenceScreen>
 ```
+
+For Android Support Library:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <mobi.upod.timedurationpicker.suport.TimeDurationPickerPreference
+        android:key="pref_duration"
+        android:title="Reminder"
+        android:summary="Remind me in ${m:ss} minute(s)."
+        android:defaultValue="900000"/>
+</PreferenceScreen>
+```
+
 As you can see from the sample, your summary might contain a `${h:mm:ss}`, `${m:ss}` or `${s}` placeholder which will be replaced with the current duration.
 
 # Styling
@@ -126,7 +146,7 @@ TimeDurationPicker provides various custom attributes to adjust its style (publi
 - **`separatorColor`:** Color of the separator line between the display row and the number pad. Defaults to `?colorControlActivated` from the appcompat.
 - **`durationDisplayBackground`:** Background color for the display area. Transparent by default. Used for example in the dialog style.
 - **`numPadButtonPadding`:** Specifies the padding for the number pad buttons.
-- **`timeUnits`:** Specifies the units of time to display.
+- **`timeUnits`:** Specifies the units of time to display ("hhmmss", "hhmm" or "mmss").
 
 They can be set directly within the layout file like this:
 ```xml
