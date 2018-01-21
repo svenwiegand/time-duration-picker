@@ -17,10 +17,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startInputDialog(View view) {
-        new PickerDialogFragment().show(getSupportFragmentManager(), "dialog");
+        new PickerDialogFragment().show(getFragmentManager(), "dialog");
     }
 
     public void startPreferences(View view) {
         PrefActivity.start(this);
+    }
+
+    public void startPreferencesCompat(View view) {
+        PrefCompatActivity.start(this);
     }
 }

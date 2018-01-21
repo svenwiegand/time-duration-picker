@@ -1,20 +1,12 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-    }
-}
 apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'time-duration-picker'
-    libraryName = 'time-duration-picker'
+    bintrayName = 'time-duration-picker-support'
+    libraryName = 'time-duration-picker-support'
 
     publishedGroupId = 'mobi.upod'
-    artifact = 'time-duration-picker'
+    artifact = 'time-duration-picker-support'
     libraryVersion = '1.1.4'
 
     libraryDescription = 'An Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop\'s stock timer app.'
@@ -31,13 +23,8 @@ ext {
     allLicenses = ['MIT']
 }
 
-repositories {
-    jcenter()
-}
-
 android {
     compileSdkVersion 27
-    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 14
@@ -45,20 +32,21 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:27.0.2"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:support-v4:27.0.2'
+    implementation 'com.android.support:preference-v7:27.0.2'
+    implementation 'com.android.support:preference-v14:27.0.2'
+    implementation project(':time-duration-picker')
 }
-
-// JCenter upload scripts taken from
-// http://inthecheesefactory.com/blog/how-to-upload-library-to-jcenter-maven-central-as-dependency/en
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

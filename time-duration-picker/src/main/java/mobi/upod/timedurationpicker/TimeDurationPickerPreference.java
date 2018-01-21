@@ -22,14 +22,8 @@ import android.view.View;
  * @see TimeDurationPicker
  * @see TimeDurationPickerDialog
  */
-public class TimeDurationPickerPreference extends DialogPreference {
-    /** Placeholder in the summary that will be replaced by the current duration value. */
-    public static final String PLACEHOLDER_HOURS_MINUTES_SECONDS = "${h:mm:ss}";
-    /** Placeholder in the summary that will be replaced by the current duration value. */
-    public static final String PLACEHOLDER_MINUTES_SECONDS = "${m:ss}";
-    /** Placeholder in the summary that will be replaced by the current duration value. */
-    public static final String PLACEHOLDER_SECONDS = "${s}";
-
+public class TimeDurationPickerPreference extends DialogPreference implements TimeDurationPickerPreferenceBase {
+    private final int timeUnits;
     private long duration = 0;
     private TimeDurationPicker picker = null;
     private String summaryTemplate;
@@ -42,6 +36,16 @@ public class TimeDurationPickerPreference extends DialogPreference {
         super(context, attrs);
         setPositiveButtonText(android.R.string.ok);
         setNegativeButtonText(android.R.string.cancel);
+        final TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.TimeDurationPicker);
+        try {
+            if (attributes.hasValue(mobi.upod.timedurationpicker.R.styleable.TimeDurationPicker_timeUnits)) {
+                timeUnits = attributes.getInt(mobi.upod.timedurationpicker.R.styleable.TimeDurationPicker_timeUnits, TimeDurationPicker.HH_MM_SS);
+            } else {
+                timeUnits = TimeDurationPicker.HH_MM_SS;
+            }
+        } finally {
+            attributes.recycle();
+        }
     }
 
     /**
@@ -79,10 +83,8 @@ public class TimeDurationPickerPreference extends DialogPreference {
         if (summaryTemplate == null) {
             summaryTemplate = getSummary().toString();
         }
-        final String summary = summaryTemplate
-                .replace(PLACEHOLDER_HOURS_MINUTES_SECONDS, TimeDurationUtil.formatHoursMinutesSeconds(duration))
-                .replace(PLACEHOLDER_MINUTES_SECONDS, TimeDurationUtil.formatMinutesSeconds(duration)
-                .replace(PLACEHOLDER_SECONDS, TimeDurationUtil.formatSeconds(duration)));
+        final String summary =
+                TimeDurationPickerPreferenceUtil.replacePlaceholders(summaryTemplate, duration);
         setSummary(summary);
     }
 
@@ -106,6 +108,7 @@ public class TimeDurationPickerPreference extends DialogPreference {
     protected void onBindDialogView(View v) {
         super.onBindDialogView(v);
         picker.setDuration(duration);
+        picker.setTimeUnits(timeUnits);
     }
 
     @Override
