@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.widget.TextViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.*;
@@ -301,7 +302,7 @@ public class TimeDurationPicker extends FrameLayout {
     }
 
     private void applyTextAppearance(Context context, int resId, final TextView[] targetViews) {
-        for (TextView view : targetViews) view.setTextAppearance(context, resId);
+        for (TextView view : targetViews) TextViewCompat.setTextAppearance(view, resId);
     }
 
     private void applyIcon(TypedArray attrs, int attributeIndex, ImageView targetView) {
