@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/time-duration-picker/time-duration-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/time-duration-picker/time-duration-picker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/timedurationpicker.iml" filepath="$PROJECT_DIR$/.idea/modules/timedurationpicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects-time-duration-picker.iml" filepath="$PROJECT_DIR$/IdeaProjects-time-duration-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/time-duration-picker/time-duration-picker-time-duration-picker.iml" filepath="$PROJECT_DIR$/time-duration-picker/time-duration-picker-time-duration-picker.iml" />
     </modules>
   </component>
 </project>

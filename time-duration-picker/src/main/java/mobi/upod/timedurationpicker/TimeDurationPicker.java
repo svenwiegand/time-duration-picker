@@ -13,15 +13,6 @@ import android.widget.*;
  * Control that allows the user to easily input a time duration made up of hours, minutes and seconds, like known from
  * the Lollipop stock timer app.
  *
- * See {@link R.styleable#TimeDurationPicker_textAppearanceDisplay},
- * {@link R.styleable#TimeDurationPicker_timeUnits},
- * {@link R.styleable#TimeDurationPicker_textAppearanceUnit},
- * {@link R.styleable#TimeDurationPicker_textAppearanceButton},
- * {@link R.styleable#TimeDurationPicker_backspaceIcon},
- * {@link R.styleable#TimeDurationPicker_clearIcon},
- * {@link R.styleable#TimeDurationPicker_separatorColor},
- * {@link R.styleable#TimeDurationPicker_durationDisplayBackground},
- * {@link R.styleable#TimeDurationPicker_numPadButtonPadding}
  */
 public class TimeDurationPicker extends FrameLayout {
 

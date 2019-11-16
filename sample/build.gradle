@@ -1,25 +1,13 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
-    }
-}
 apply plugin: 'com.android.application'
 
-repositories {
-    jcenter()
-}
-
 android {
-    compileSdkVersion 23
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "mobi.upod.timedurationpicker.sample"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -32,8 +20,7 @@ android {
 }
 
 dependencies {
-    compile project(':time-duration-picker')
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':time-duration-picker')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
 }

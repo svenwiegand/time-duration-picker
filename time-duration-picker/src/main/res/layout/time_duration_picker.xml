@@ -70,7 +70,8 @@
             android:minWidth="@dimen/touchable"
             android:minHeight="@dimen/touchable"
             android:src="@drawable/ic_backspace_light"
-            android:background="?selectableItemBackgroundBorderless"/>
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_toStartOf="@+id/clear" />
 
         <ImageButton
             android:layout_centerVertical="true"
@@ -81,7 +82,8 @@
             android:minWidth="@dimen/touchable"
             android:minHeight="@dimen/touchable"
             android:src="@drawable/ic_clear_light"
-            android:background="?selectableItemBackgroundBorderless"/>
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_alignParentEnd="true" />
 
         <View
             android:id="@+id/separator"
