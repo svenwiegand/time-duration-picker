@@ -1,3 +1,5 @@
+**Note:** I'm no longer supporting this library, as I dropped Android development in general.
+
 # TimeDurationPicker
 TimeDurationPicker is an Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop's stock timer app. The component is available in three flavors:
 
