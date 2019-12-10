@@ -1,9 +1,12 @@
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
     }
 }
 apply plugin: 'com.android.library'
@@ -15,7 +18,7 @@ ext {
 
     publishedGroupId = 'mobi.upod'
     artifact = 'time-duration-picker'
-    libraryVersion = '1.1.4'
+    libraryVersion = '1.2.0'
 
     libraryDescription = 'An Android library, that provides a component which makes it quick and easy for a user to enter a time duration in hours, minutes and seconds, similar to Android Lollipop\'s stock timer app.'
 
@@ -36,14 +39,13 @@ repositories {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
+        minSdkVersion 17
+        targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName '1.2.0'
     }
     buildTypes {
         release {
@@ -54,8 +56,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:27.0.2"
+    def androidx = "1.1.0"
+    implementation "androidx.appcompat:appcompat:$androidx"
+    implementation "androidx.preference:preference:$androidx"
+    implementation 'com.google.android.material:material:1.0.0'
 }
 
 // JCenter upload scripts taken from

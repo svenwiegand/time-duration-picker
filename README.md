@@ -27,9 +27,7 @@ repositories {
 }
 
 dependencies {
-    compile 'mobi.upod:time-duration-picker:1.1.4'
-    // For Android Support Library
-    compile 'mobi.upod:time-duration-picker-support:1.1.4'
+    compile 'mobi.upod:time-duration-picker:1.2.0'
 }
 ```
 
@@ -50,7 +48,7 @@ To use the standalone component, simply reference it in your layout. For example
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         style="@style/Widget.TimeDurationInput.Large"/>
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,29 +101,12 @@ And then from within an `Activity`:
 new PickerDialogFragment().show(getFragmentManager(), "dialog");
 ```
 
-For Android Support Library, use:
-```java
-import mobi.upod.timedurationpicker.support.TimeDurationPickerDialogFragment;
-```
-
 ## Preference
 Want a duration preference that holds a user selected value in milliseconds? Simply reference `TimeDurationPickerPreference` in your Preference-XML file like this:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <mobi.upod.timedurationpicker.TimeDurationPickerPreference
-        android:key="pref_duration"
-        android:title="Reminder"
-        android:summary="Remind me in ${m:ss} minute(s)."
-        android:defaultValue="900000"/>
-</PreferenceScreen>
-```
-
-For Android Support Library:
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <mobi.upod.timedurationpicker.suport.TimeDurationPickerPreference
         android:key="pref_duration"
         android:title="Reminder"
         android:summary="Remind me in ${m:ss} minute(s)."

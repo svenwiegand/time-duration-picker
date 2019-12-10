@@ -1,9 +1,10 @@
 package mobi.upod.timedurationpicker.sample;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -17,14 +18,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startInputDialog(View view) {
-        new PickerDialogFragment().show(getFragmentManager(), "dialog");
+        new PickerDialogFragment().show(getSupportFragmentManager(), "dialog");
     }
 
     public void startPreferences(View view) {
         PrefActivity.start(this);
-    }
-
-    public void startPreferencesCompat(View view) {
-        PrefCompatActivity.start(this);
     }
 }

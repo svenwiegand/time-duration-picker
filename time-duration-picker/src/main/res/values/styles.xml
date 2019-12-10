@@ -7,7 +7,7 @@
         <item name="android:textSize">34sp</item>
     </style>
     <style name="TextAppearance.TimeDurationPicker.Unit">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
     <style name="TextAppearance.TimeDurationPicker.Button">
         <item name="android:textSize">24sp</item>
@@ -17,7 +17,7 @@
         <item name="android:textSize">45sp</item>
     </style>
     <style name="TextAppearance.TimeDurationPicker.Unit.Large">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
     <style name="TextAppearance.TimeDurationPicker.Button.Large">
         <item name="android:textSize">34sp</item>

@@ -1,7 +1,5 @@
 package mobi.upod.timedurationpicker;
 
-import android.util.AttributeSet;
-
 public final class TimeDurationPickerPreferenceUtil {
     public static String replacePlaceholders(String template, long duration) {
         return template

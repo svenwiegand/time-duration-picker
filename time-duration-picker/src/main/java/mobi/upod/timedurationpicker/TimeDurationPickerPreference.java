@@ -1,12 +1,10 @@
 package mobi.upod.timedurationpicker;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.preference.DialogPreference;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
+
+import androidx.preference.DialogPreference;
 
 /**
  * A preference that allows the user to pick a time duration using a {@link TimeDurationPicker}.
@@ -23,9 +21,8 @@ import android.view.View;
  * @see TimeDurationPickerDialog
  */
 public class TimeDurationPickerPreference extends DialogPreference implements TimeDurationPickerPreferenceBase {
-    private final int timeUnits;
+    final int timeUnits;
     private long duration = 0;
-    private TimeDurationPicker picker = null;
     private String summaryTemplate;
 
     public TimeDurationPickerPreference(Context context) {
@@ -50,8 +47,10 @@ public class TimeDurationPickerPreference extends DialogPreference implements Ti
 
     /**
      * Set the current duration.
+     *
      * @param duration duration in milliseconds
      */
+    @Override
     public void setDuration(long duration) {
         this.duration = duration;
         persistLong(duration);
@@ -61,71 +60,25 @@ public class TimeDurationPickerPreference extends DialogPreference implements Ti
 
     /**
      * Get the current duration.
+     *
      * @return duration in milliseconds.
      */
+    @Override
     public long getDuration() {
         return duration;
-    }
-
-    /**
-     * Gets the {@link TimeDurationPicker} used by this dialog.
-     * @return the picker used by this dialog.
-     */
-    public TimeDurationPicker getTimeDurationPicker() {
-        return picker;
     }
 
     //
     // internal stuff
     //
 
-    private void updateDescription() {
+    void updateDescription() {
         if (summaryTemplate == null) {
             summaryTemplate = getSummary().toString();
         }
         final String summary =
                 TimeDurationPickerPreferenceUtil.replacePlaceholders(summaryTemplate, duration);
         setSummary(summary);
-    }
-
-    @Override
-    protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        super.onPrepareDialogBuilder(builder.setTitle(null).setIcon(null));
-    }
-
-    @Override
-    protected View onCreateDialogView() {
-        final LayoutInflater inflater = LayoutInflater.from(getContext());
-        picker = initPicker((TimeDurationPicker) inflater.inflate(R.layout.time_duration_picker_dialog, null));
-        return picker;
-    }
-
-    protected TimeDurationPicker initPicker(TimeDurationPicker timePicker) {
-        return timePicker;
-    }
-
-    @Override
-    protected void onBindDialogView(View v) {
-        super.onBindDialogView(v);
-        picker.setDuration(duration);
-        picker.setTimeUnits(timeUnits);
-    }
-
-    @Override
-    protected void onDialogClosed(boolean positiveResult) {
-        super.onDialogClosed(positiveResult);
-
-        if (positiveResult) {
-            final long newDuration = picker.getDuration();
-
-            if (!callChangeListener(newDuration)) {
-                return;
-            }
-
-            // persist
-            setDuration(newDuration);
-            updateDescription();
-        }
     }
 
     @Override
@@ -145,4 +98,10 @@ public class TimeDurationPickerPreference extends DialogPreference implements Ti
         setDuration(duration);
         updateDescription();
     }
+
+    @Override
+    public int getDialogLayoutResource() {
+        return R.layout.time_duration_picker_pref_dialog;
+    }
+
 }

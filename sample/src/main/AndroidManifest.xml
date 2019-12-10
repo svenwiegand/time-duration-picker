@@ -26,7 +26,7 @@
             android:theme="@style/AppTheme.Light"/>
 
         <activity
-            android:name=".PrefCompatActivity"
+            android:name=".PrefActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Light"/>
     </application>
