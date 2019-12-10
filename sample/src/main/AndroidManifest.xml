@@ -24,11 +24,6 @@
             android:name=".PrefActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Light"/>
-
-        <activity
-            android:name=".PrefActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.Light"/>
     </application>
 
 </manifest>
