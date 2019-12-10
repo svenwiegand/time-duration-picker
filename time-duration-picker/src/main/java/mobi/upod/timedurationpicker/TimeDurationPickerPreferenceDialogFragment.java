@@ -16,6 +16,15 @@ public class TimeDurationPickerPreferenceDialogFragment
 
     TimeDurationPicker picker;
 
+    public static TimeDurationPickerPreferenceDialogFragment newInstance(String key) {
+        final TimeDurationPickerPreferenceDialogFragment fragment = new TimeDurationPickerPreferenceDialogFragment();
+        final Bundle b = new Bundle(1);
+        b.putString(ARG_KEY, key);
+        fragment.setArguments(b);
+
+        return fragment;
+    }
+
     @Override
     protected View onCreateDialogView(Context context) {
         final LayoutInflater inflater = LayoutInflater.from(context);
@@ -54,14 +63,5 @@ public class TimeDurationPickerPreferenceDialogFragment
 
     protected TimeDurationPicker initPicker(TimeDurationPicker timePicker) {
         return timePicker;
-    }
-
-    public static TimeDurationPickerPreferenceDialogFragment newInstance(String key) {
-        final TimeDurationPickerPreferenceDialogFragment fragment = new TimeDurationPickerPreferenceDialogFragment();
-        final Bundle b = new Bundle(1);
-        b.putString(ARG_KEY, key);
-        fragment.setArguments(b);
-
-        return fragment;
     }
 }
