@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startInputDialog(View view) {
-        new PickerDialogFragment().show(getFragmentManager(), "dialog");
+        new PickerDialogFragment().show(getSupportFragmentManager(), "dialog");
     }
 
     public void startPreferences(View view) {
