@@ -72,7 +72,7 @@ public class TimeDurationPickerPreference extends DialogPreference implements Ti
     // internal stuff
     //
 
-    void updateDescription() {
+    public void updateDescription() {
         if (summaryTemplate == null) {
             summaryTemplate = getSummary().toString();
         }
