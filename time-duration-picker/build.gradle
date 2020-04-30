@@ -39,11 +39,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName '1.2.0'
     }
@@ -56,9 +56,8 @@ android {
 }
 
 dependencies {
-    def androidx = "1.1.0"
-    implementation "androidx.appcompat:appcompat:$androidx"
-    implementation "androidx.preference:preference:$androidx"
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.preference:preference:1.1.1"
     implementation 'com.google.android.material:material:1.1.0'
 }
 
