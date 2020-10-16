@@ -23,7 +23,7 @@ public abstract class TimeDurationPickerPreferenceFragment extends PreferenceFra
         if (dialogFragment != null) {
             // The dialog was created (it was one of our custom Preferences), show the dialog for it
             dialogFragment.setTargetFragment(this, 0);
-            dialogFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+            dialogFragment.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else {
             // Dialog creation could not be handled here. Try with the super method.
             super.onDisplayPreferenceDialog(preference);
