@@ -46,9 +46,9 @@ public class TimeDurationPicker extends FrameLayout {
     private final Button[] numPadButtons;
     private final Button numPadMeasureButton;
     private OnDurationChangedListener changeListener = null;
-    private TextView secondsLabel;
-    private TextView hoursLabel;
-    private TextView minutesLabel;
+    private final TextView secondsLabel;
+    private final TextView hoursLabel;
+    private final TextView minutesLabel;
 
     /**
      * Implement this interface and set it using #setOnDurationChangeListener to get informed about input changes.
