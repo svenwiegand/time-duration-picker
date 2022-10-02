@@ -1,15 +1,17 @@
 buildscript {
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools.build:gradle:3.5.4'
     }
 }
 apply plugin: 'com.android.application'
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
