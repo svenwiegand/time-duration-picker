@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-       android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
        android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/displayRow"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layoutDirection="ltr">
 
         <LinearLayout
             android:id="@+id/duration"
@@ -21,7 +23,6 @@
                 android:id="@+id/hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:textAppearance="@style/TextAppearance.TimeDurationPicker.Display"
                 android:text="00"/>
 
@@ -44,21 +45,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.TimeDurationPicker.Unit"
-                android:text="m"/>
+                android:text="m"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/seconds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.TimeDurationPicker.Display"
-                android:text="00"/>
+                android:text="00"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/secondsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.TimeDurationPicker.Unit"
-                android:text="s"/>
+                android:text="s"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <ImageButton
@@ -66,18 +70,19 @@
             android:id="@+id/backspace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/clear"
+            android:layout_toStartOf="@+id/clear"
             android:minWidth="@dimen/touchable"
             android:minHeight="@dimen/touchable"
             android:src="@drawable/ic_backspace_light"
-            android:background="?selectableItemBackgroundBorderless"/>
+            android:background="?selectableItemBackgroundBorderless"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:layout_centerVertical="true"
             android:id="@+id/clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:minWidth="@dimen/touchable"
             android:minHeight="@dimen/touchable"
             android:src="@drawable/ic_clear_light"
