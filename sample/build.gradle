@@ -16,12 +16,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "mobi.upod.timedurationpicker.sample"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
