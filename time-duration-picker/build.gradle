@@ -38,11 +38,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 33
+    namespace 'mobi.upod.timedurationpicker'
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 33
+        minSdk 17
+        targetSdk 33
         versionCode 1
         versionName '1.2.0'
     }
@@ -55,7 +56,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'androidx.preference:preference:1.2.0'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'com.google.android.material:material:1.10.0'
 }
