@@ -1,18 +1,22 @@
 package mobi.upod.timedurationpicker;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceDialogFragmentCompat;
 
 /**
  * A time duration picker PreferenceDialogFragmentCompat for usage with AppCompatActivity.
  */
-public class TimeDurationPickerPreferenceDialogFragment
-        extends PreferenceDialogFragmentCompat {
+public class TimeDurationPickerPreferenceDialogFragment extends PreferenceDialogFragmentCompat {
 
     TimeDurationPicker picker;
 
@@ -25,21 +29,31 @@ public class TimeDurationPickerPreferenceDialogFragment
         return fragment;
     }
 
+    @NonNull
     @Override
-    protected View onCreateDialogView(Context context) {
-        final LayoutInflater inflater = LayoutInflater.from(context);
-        picker = initPicker((TimeDurationPicker) inflater.inflate(R.layout.time_duration_picker_pref_dialog, null));
-        return picker;
-    }
-
-    @Override
-    protected void onBindDialogView(View v) {
-        super.onBindDialogView(v);
-        picker = v.findViewById(R.id.edit);
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Context context = requireContext();
         TimeDurationPickerPreference preference = (TimeDurationPickerPreference) getPreference();
 
+        final LayoutInflater inflater = LayoutInflater.from(context);
+        picker = initPicker((TimeDurationPicker) inflater.inflate(preference.getDialogLayoutResource(), null));
         picker.setTimeUnits(preference.timeUnits);
         picker.setDuration(preference.getDuration());
+
+        return
+            new MaterialAlertDialogBuilder(context)
+                .setView(picker)
+                .setTitle(preference.getDialogTitle())
+                .setCancelable(true)
+                .setPositiveButton(
+                    context.getString(android.R.string.ok),
+                    this
+                )
+                .setNegativeButton(
+                    context.getString(android.R.string.cancel),
+                    this
+                )
+                .create();
     }
 
     @Override
@@ -54,11 +68,6 @@ public class TimeDurationPickerPreferenceDialogFragment
                 preference.updateDescription();
             }
         }
-    }
-
-    @Override
-    protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        super.onPrepareDialogBuilder(builder.setTitle(null).setIcon(null));
     }
 
     protected TimeDurationPicker initPicker(TimeDurationPicker timePicker) {

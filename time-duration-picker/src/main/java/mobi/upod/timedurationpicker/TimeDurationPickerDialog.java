@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.google.android.material.theme.overlay.MaterialThemeOverlay;
+
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.ContextThemeWrapper;
 
 /**
  * A simple dialog containing a {@link TimeDurationPicker}.
@@ -41,6 +44,7 @@ public class TimeDurationPickerDialog extends AlertDialog implements DialogInter
      * @param duration the initial duration to be shown in the dialog
      */
     public TimeDurationPickerDialog(Context context, OnDurationSetListener listener, long duration) {
+        //super(new ContextThemeWrapper(context, com.google.android.material.R.style.MaterialAlertDialog_MaterialComponents));
         super(context);
         durationSetListener = listener;
 

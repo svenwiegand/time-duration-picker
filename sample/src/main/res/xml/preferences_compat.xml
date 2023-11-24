@@ -5,5 +5,6 @@
         android:title="Reminder"
         android:summary="Remind me in ${m:ss} minute(s)."
         app:timeUnits="mmss"
+        android:dialogTitle="Remind me in"
         android:defaultValue="900000"/>
 </PreferenceScreen>

@@ -29,26 +29,20 @@ public class TimeDurationPicker extends FrameLayout {
     public static final int HH_MM = 1;
     public static final int MM_SS = 2;
 
-    private int timeUnits = HH_MM_SS;
 
     private final TimeDurationString input = new TimeDurationString();
-    private final View displayRow;
-    private final View durationView;
     private final TextView hoursView;
     private final TextView minutesView;
     private final TextView secondsView;
-    private final TextView[] displayViews;
-    private final TextView[] unitLabelViews;
     private final ImageButton backspaceButton;
     private final ImageButton clearButton;
-    private final View separatorView;
-    private final View numPad;
     private final Button[] numPadButtons;
-    private final Button numPadMeasureButton;
-    private OnDurationChangedListener changeListener = null;
     private final TextView secondsLabel;
     private final TextView hoursLabel;
     private final TextView minutesLabel;
+
+    private int timeUnits = HH_MM_SS;
+    private OnDurationChangedListener changeListener = null;
 
     /**
      * Implement this interface and set it using #setOnDurationChangeListener to get informed about input changes.
@@ -74,89 +68,37 @@ public class TimeDurationPicker extends FrameLayout {
         super(context, attrs, defStyleAttr);
         inflate(context, R.layout.time_duration_picker, this);
 
-        //
         // find views
-        //
-        displayRow = findViewById(R.id.displayRow);
-        durationView = findViewById(R.id.duration);
-        hoursView = (TextView) findViewById(R.id.hours);
-        minutesView = (TextView) findViewById(R.id.minutes);
-        secondsView = (TextView) findViewById(R.id.seconds);
-        displayViews = new TextView[] { hoursView, minutesView, secondsView };
+        hoursView = findViewById(R.id.hours);
+        minutesView = findViewById(R.id.minutes);
+        secondsView = findViewById(R.id.seconds);
 
-        hoursLabel = (TextView) findViewById(R.id.hoursLabel);
-        minutesLabel = (TextView) findViewById(R.id.minutesLabel);
-        secondsLabel = (TextView) findViewById(R.id.secondsLabel);
-        unitLabelViews = new TextView[] { hoursLabel, minutesLabel, secondsLabel };
+        hoursLabel = findViewById(R.id.hoursLabel);
+        minutesLabel = findViewById(R.id.minutesLabel);
+        secondsLabel = findViewById(R.id.secondsLabel);
 
-        backspaceButton = (ImageButton) findViewById(R.id.backspace);
-        clearButton = (ImageButton) findViewById(R.id.clear);
+        backspaceButton = findViewById(R.id.backspace);
+        clearButton = findViewById(R.id.clear);
 
-        separatorView = findViewById(R.id.separator);
-
-        numPad = findViewById(R.id.numPad);
-        numPadMeasureButton = (Button) findViewById(R.id.numPadMeasure);
         numPadButtons = new Button[] {
-                (Button) findViewById(R.id.numPad1), (Button) findViewById(R.id.numPad2), (Button) findViewById(R.id.numPad3),
-                (Button) findViewById(R.id.numPad4), (Button) findViewById(R.id.numPad5), (Button) findViewById(R.id.numPad6),
-                (Button) findViewById(R.id.numPad7), (Button) findViewById(R.id.numPad8), (Button) findViewById(R.id.numPad9),
-                (Button) findViewById(R.id.numPad0), (Button) findViewById(R.id.numPad00)
+            findViewById(R.id.numPad1), findViewById(R.id.numPad2), findViewById(R.id.numPad3),
+            findViewById(R.id.numPad4), findViewById(R.id.numPad5), findViewById(R.id.numPad6),
+            findViewById(R.id.numPad7), findViewById(R.id.numPad8), findViewById(R.id.numPad9),
+            findViewById(R.id.numPad0), findViewById(R.id.numPad00)
         };
 
-        //
-        // apply style
-        //
-        final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TimeDurationPicker, defStyleAttr, 0);
-        try {
-            applyPadding(attributes, R.styleable.TimeDurationPicker_numPadButtonPadding, numPadButtons);
-
-            applyTextAppearance(context, attributes, R.styleable.TimeDurationPicker_textAppearanceDisplay, displayViews);
-            applyTextAppearance(context, attributes, R.styleable.TimeDurationPicker_textAppearanceButton, numPadButtons);
-            applyTextAppearance(context, attributes, R.styleable.TimeDurationPicker_textAppearanceUnit, unitLabelViews);
-
-            applyIcon(attributes, R.styleable.TimeDurationPicker_backspaceIcon, backspaceButton);
-            applyIcon(attributes, R.styleable.TimeDurationPicker_clearIcon, clearButton);
-
-            applyBackgroundColor(attributes, R.styleable.TimeDurationPicker_separatorColor, separatorView);
-            applyBackgroundColor(attributes, R.styleable.TimeDurationPicker_durationDisplayBackground, displayRow);
-
-            applyUnits(attributes, R.styleable.TimeDurationPicker_timeUnits);
-        } finally {
-            attributes.recycle();
-        }
-
-        //
         // init actions
-        //
 
         updateUnits();
 
-        backspaceButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackspace();
-            }
-        });
-        clearButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClear();
-            }
-        });
+        backspaceButton.setOnClickListener(v -> onBackspace());
+        clearButton.setOnClickListener(v -> onClear());
 
-        final OnClickListener numberClickListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onNumberClick(((Button) v).getText());
-            }
-        };
         for (Button button : numPadButtons) {
-            button.setOnClickListener(numberClickListener);
+            button.setOnClickListener(v -> onNumberClick(((Button) v).getText()));
         }
 
-        //
         // init default value
-        //
         updateHoursMinutesSeconds();
     }
 
@@ -214,118 +156,6 @@ public class TimeDurationPicker extends FrameLayout {
         changeListener = listener;
     }
 
-    /**
-     * Sets the text appearance for the entered duration (the large numbers in the upper area).
-     * @param resId resource id of the style describing the text appearance.
-     */
-    public void setDisplayTextAppearance(int resId) {
-        applyTextAppearance(getContext(), resId, displayViews);
-    }
-
-    /**
-     * Sets the text appearance for the small unit lables ("h", "m", "s") in the upper display area.
-     * @param resId resource id of the style describing the text appearance.
-     */
-    public void setUnitTextAppearance(int resId) {
-        applyTextAppearance(getContext(), resId, unitLabelViews);
-    }
-
-    /**
-     * Sets the text appearance for the number pad buttons.
-     * @param resId resource id of the style describing the text appearance.
-     */
-    public void setButtonTextAppearance(int resId) {
-        applyTextAppearance(getContext(), resId, numPadButtons);
-    }
-
-    /**
-     * Sets the icon to be shown on the backspace button.
-     * @param icon backspace drawable
-     */
-    public void setBackspaceIcon(Drawable icon) {
-        backspaceButton.setImageDrawable(icon);
-    }
-
-    /**
-     * Sets the icon for the clear button.
-     * @param icon clear drawable
-     */
-    public void setClearIcon(Drawable icon) {
-        clearButton.setImageDrawable(icon);
-    }
-
-    /**
-     * Sets the color of the separator line between the duration display and the number pad.
-     * @param color color value
-     */
-    public void setSeparatorColor(int color) {
-        separatorView.setBackgroundColor(color);
-    }
-
-    /**
-     * Sets the background color of the upper duration display area.
-     * @param color color value
-     */
-    public void setDurationDisplayBackgroundColor(int color) {
-        displayRow.setBackgroundColor(color);
-    }
-
-    /**
-     * Sets the padding to be used for the number pad buttons.
-     * @param padding padding in pixels
-     */
-    public void setNumPadButtonPadding(int padding) {
-        applyPadding(padding, numPadButtons);
-    }
-
-    //
-    // style helpers
-    //
-
-    private void applyPadding(TypedArray attrs, int attributeIndex, final View[] targetViews) {
-        final int padding = attrs.getDimensionPixelSize(attributeIndex, -1);
-        if (padding > -1) {
-            applyPadding(padding, targetViews);
-        }
-    }
-
-    private void applyPadding(int padding, final View[] targetViews) {
-        for (View view : targetViews) view.setPadding(padding, padding, padding, padding);
-    }
-
-    private void applyTextAppearance(Context context, TypedArray attrs, int attributeIndex, final TextView[] targetViews) {
-        final int id = attrs.getResourceId(attributeIndex, 0);
-        if (id != 0) {
-            applyTextAppearance(context, id, targetViews);
-        }
-    }
-
-    private void applyTextAppearance(Context context, int resId, final TextView[] targetViews) {
-        for (TextView view : targetViews) view.setTextAppearance(context, resId);
-    }
-
-    private void applyIcon(TypedArray attrs, int attributeIndex, ImageView targetView) {
-        final Drawable icon = attrs.getDrawable(attributeIndex);
-        if (icon != null) {
-            targetView.setImageDrawable(icon);
-        }
-    }
-
-    private void applyBackgroundColor(TypedArray attrs, int attributeIndex, View targetView) {
-        if (attrs.hasValue(attributeIndex)) {
-            final int color = attrs.getColor(attributeIndex, 0);
-            targetView.setBackgroundColor(color);
-        }
-    }
-
-    private void applyLeftMargin(int margin, View... targetViews) {
-        for (View view : targetViews) {
-            final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-            params.setMargins(margin, params.topMargin, params.rightMargin, params.bottomMargin);
-            view.setLayoutParams(params);
-        }
-    }
-
     //
     // event helpers
     //
@@ -356,81 +186,6 @@ public class TimeDurationPicker extends FrameLayout {
         if (changeListener != null) {
             changeListener.onDurationChanged(this, input.getDuration());
         }
-    }
-
-    //
-    // layouting
-    //
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        final int touchableSize = getContext().getResources().getDimensionPixelSize(R.dimen.touchable);
-        final int dummyMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-
-        // set spacing between units
-        hoursView.measure(dummyMeasureSpec, dummyMeasureSpec);
-        final TextView unitLabelView = unitLabelViews[2];
-        unitLabelView.measure(dummyMeasureSpec, dummyMeasureSpec);
-        final int unitSpacing = Math.max(hoursView.getMeasuredWidth() / 3, (int) (1.2f * unitLabelView.getMeasuredWidth()));
-        applyLeftMargin(unitSpacing, minutesView, secondsView);
-
-        // calculate size for display row
-        durationView.measure(dummyMeasureSpec, dummyMeasureSpec);
-        final int minDisplayWidth = durationView.getMeasuredWidth() + 2 * touchableSize;
-        final int minDisplayHeight = Math.max(durationView.getMeasuredHeight(), touchableSize);
-
-        // calculate size for num pad
-        numPadMeasureButton.measure(dummyMeasureSpec, dummyMeasureSpec);
-        final int minNumPadButtonSize = Math.max(Math.max(numPadMeasureButton.getMeasuredHeight(), numPadMeasureButton.getMeasuredWidth()), touchableSize);
-        final int minNumPadWidth = 3 * minNumPadButtonSize;
-        final int minNumPadHeight = 4 * minNumPadButtonSize;
-
-        // calculate overall size
-        final int minWidth = Math.max(minDisplayWidth, minNumPadWidth);
-        final int minHeight = minDisplayHeight + minNumPadHeight;
-
-        // respect measure spec
-        final int availableWidth = MeasureSpec.getSize(widthMeasureSpec);
-        final int availableHeight = MeasureSpec.getSize(heightMeasureSpec);
-        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        final int preferredWidth = widthMode == MeasureSpec.EXACTLY ? availableWidth : minWidth;
-        final int preferredHeight = heightMode == MeasureSpec.EXACTLY ? availableHeight : minHeight;
-
-        // measure the display
-        final int displayRowWidth = Math.max(minDisplayWidth, preferredWidth);
-        final int displayRowHeight = minDisplayHeight;
-        displayRow.measure(MeasureSpec.makeMeasureSpec(displayRowWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(displayRowHeight, MeasureSpec.EXACTLY));
-
-        // measure the numPad
-        // if we have more space available, we can try to grow the num pad
-        final int numPadWidth = Math.max(minNumPadHeight, displayRowWidth);
-        final int numPadHeight = Math.max(minNumPadHeight, preferredHeight - displayRowHeight);
-        numPad.measure(MeasureSpec.makeMeasureSpec(numPadWidth, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(numPadHeight, MeasureSpec.EXACTLY));
-
-        // forward calculated size to super implementation
-        final int width = Math.max(displayRowWidth, numPadWidth);
-        final int height = displayRowHeight + numPadHeight;
-        setMeasuredDimension(width, height);
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        final int width = right - left;
-
-        // layout display row
-        final int displayRowWidth = displayRow.getMeasuredWidth();
-        final int displayRowHeight = displayRow.getMeasuredHeight();
-        final int displayRowX = (width - displayRowWidth) / 2;
-        displayRow.layout(displayRowX, 0, displayRowX + displayRowWidth, displayRowHeight);
-
-        // layout num pad
-        final int numPadWidth = numPad.getMeasuredWidth();
-        final int numPadHeight = numPad.getMeasuredHeight();
-        final int numPadX = (width - numPadWidth) / 2;
-        final int numPadY = displayRowHeight;
-        numPad.layout(numPadX, numPadY, numPadX + numPadWidth, numPadY + numPadHeight);
     }
 
     //
@@ -569,7 +324,7 @@ public class TimeDurationPicker extends FrameLayout {
         }
 
         private String stringFragment(long value) {
-            return (value < 10 ? "0" : "") + Long.toString(value);
+            return (value < 10 ? "0" : "") + value;
         }
     }
 
