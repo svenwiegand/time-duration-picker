@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -40,20 +41,21 @@ public class TimeDurationPickerPreferenceDialogFragment extends PreferenceDialog
         picker.setTimeUnits(preference.timeUnits);
         picker.setDuration(preference.getDuration());
 
-        return
-            new MaterialAlertDialogBuilder(context)
-                .setView(picker)
-                .setTitle(preference.getDialogTitle())
-                .setCancelable(true)
-                .setPositiveButton(
-                    context.getString(android.R.string.ok),
-                    this
-                )
-                .setNegativeButton(
-                    context.getString(android.R.string.cancel),
-                    this
-                )
-                .create();
+        final AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+            .setView(picker)
+            .setTitle(preference.getDialogTitle())
+            .setCancelable(true)
+            .setPositiveButton(
+                context.getString(android.R.string.ok),
+                this
+            )
+            .setNegativeButton(
+                context.getString(android.R.string.cancel),
+                this
+            )
+            .create();
+
+        return dialog;
     }
 
     @Override

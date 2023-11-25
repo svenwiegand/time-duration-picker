@@ -7,7 +7,7 @@
 
     <style name="TextAppearance.TimeDurationPicker.Display">
         <item name="android:textSize">34sp</item>
-        <!--<item name="android:textColor">?attr/colorOnBackground</item>-->
+        <item name="android:textColor">?android:textColorPrimary</item>
     </style>
 
     <style name="TextAppearance.TimeDurationPicker.Unit">
@@ -71,13 +71,13 @@
     </style>
 
     <style name="Widget.TimeDurationPicker.Light">
-        <item name="backspaceIcon">@drawable/ic_backspace_light</item>
-        <item name="clearIcon">@drawable/ic_backspace_light</item>
+        <item name="backspaceIcon">@drawable/ic_backspace</item>
+        <item name="clearIcon">@drawable/ic_backspace</item>
     </style>
 
     <style name="Widget.TimeDurationPicker.Large.Light">
-        <item name="backspaceIcon">@drawable/ic_backspace_light</item>
-        <item name="clearIcon">@drawable/ic_backspace_light</item>
+        <item name="backspaceIcon">@drawable/ic_backspace</item>
+        <item name="clearIcon">@drawable/ic_backspace</item>
     </style>
 
     <style name="Widget.TimeDurationPicker.Dialog">
@@ -98,8 +98,13 @@
         <item name="layout_columnWeight">1</item>
         <item name="layout_gravity">fill</item>
 
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
 
         <item name="android:textAppearance">@style/TextAppearance.TimeDurationPicker.Display</item>
     </style>

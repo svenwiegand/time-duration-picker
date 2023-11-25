@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "mobi.upod.timedurationpicker.sample"
-        minSdk 17
+        minSdk 21
         targetSdk 34
         versionCode 1
         versionName "1.0"
