@@ -1,25 +1,25 @@
 buildscript {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
+        classpath 'com.android.tools.build:gradle:8.2.0'
     }
 }
 apply plugin: 'com.android.application'
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "26.0.1"
+    compileSdk 34
 
     defaultConfig {
         applicationId "mobi.upod.timedurationpicker.sample"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
@@ -29,11 +29,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'mobi.upod.timedurationpicker.sample'
 }
 
 dependencies {
-    compile project(':time-duration-picker')
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':time-duration-picker')
+
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.preference:preference:1.2.1"
 }

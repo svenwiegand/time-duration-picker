@@ -26,11 +26,12 @@ To use TimeDurationPicker in your android project simply include it using the fo
 [ ![Download](https://api.bintray.com/packages/svenwiegand/maven/time-duration-picker/images/download.svg) ](https://bintray.com/svenwiegand/maven/time-duration-picker/_latestVersion)
 ```groovy
 repositories {
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
-    compile 'mobi.upod:time-duration-picker:1.1.3'
+    compile 'mobi.upod:time-duration-picker:1.2.0'
 }
 ```
 
@@ -51,7 +52,7 @@ To use the standalone component, simply reference it in your layout. For example
         android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         style="@style/Widget.TimeDurationInput.Large"/>
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,6 +117,7 @@ Want a duration preference that holds a user selected value in milliseconds? Sim
         android:defaultValue="900000"/>
 </PreferenceScreen>
 ```
+
 As you can see from the sample, your summary might contain a `${h:mm:ss}`, `${m:ss}` or `${s}` placeholder which will be replaced with the current duration.
 
 # Styling
@@ -129,7 +131,7 @@ TimeDurationPicker provides various custom attributes to adjust its style (publi
 - **`separatorColor`:** Color of the separator line between the display row and the number pad. Defaults to `?colorControlActivated` from the appcompat.
 - **`durationDisplayBackground`:** Background color for the display area. Transparent by default. Used for example in the dialog style.
 - **`numPadButtonPadding`:** Specifies the padding for the number pad buttons.
-- **`timeUnits`:** Specifies the units of time to display.
+- **`timeUnits`:** Specifies the units of time to display ("hhmmss", "hhmm" or "mmss").
 
 They can be set directly within the layout file like this:
 ```xml

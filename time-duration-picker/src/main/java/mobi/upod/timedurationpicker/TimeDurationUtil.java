@@ -1,5 +1,7 @@
 package mobi.upod.timedurationpicker;
 
+import java.util.Locale;
+
 /**
  * Utility class for handling duration values.
  */
@@ -73,7 +75,13 @@ public class TimeDurationUtil {
      * @return string representation of the duration.
      */
     public static String formatHoursMinutesSeconds(long duration) {
-        return String.format("%d:%02d:%02d", hoursOf(duration), minutesInHourOf(duration), secondsInMinuteOf(duration));
+        return String.format(
+            Locale.ROOT,
+            "%d:%02d:%02d",
+            hoursOf(duration),
+            minutesInHourOf(duration),
+            secondsInMinuteOf(duration)
+        );
     }
 
     /**
@@ -82,7 +90,12 @@ public class TimeDurationUtil {
      * @return string representation of the duration.
      */
     public static String formatMinutesSeconds(long duration) {
-        return String.format("%d:%02d", minutesOf(duration), secondsInMinuteOf(duration));
+        return String.format(
+            Locale.ROOT,
+            "%d:%02d",
+            minutesOf(duration),
+            secondsInMinuteOf(duration)
+        );
     }
 
     /**
@@ -91,6 +104,6 @@ public class TimeDurationUtil {
      * @return string representation of the duration.
      */
     public static String formatSeconds(long duration) {
-        return String.format("%d", secondsInMinuteOf(duration));
+        return String.format(Locale.ROOT, "%d", secondsInMinuteOf(duration));
     }
 }
